@@ -1,81 +1,75 @@
 # FloodVizag Design Principles
 
-## 1. Map First
+## Purpose
 
-The map is the primary interface.
+FloodVizag is a community-powered flood intelligence platform for Visakhapatnam.
 
-Everything else supports the map.
-
----
-
-## 2. Emergency Usability
-
-A citizen standing in heavy rain should understand the interface within five seconds.
+Its primary goal is to help citizens make safer travel decisions during heavy rainfall while building long-term flood intelligence for the city.
 
 ---
 
-## 3. One Hand Operation
+## Principle 1 — Map First
 
-Every primary action must be reachable using one thumb.
+The map is the heart of FloodVizag.
 
----
-
-## 4. Community Driven
-
-Citizens contribute observations.
-
-The system creates Flood Events.
-
-Not duplicate reports.
+Every major feature should support the map.
 
 ---
 
-## 5. Progressive Disclosure
+## Principle 2 — Emergency First
 
-Show only essential information first.
-
-Reveal details only when requested.
-
----
-
-## 6. Trust Before Beauty
-
-The application should feel reliable before it feels beautiful.
-
----
-
-## 7. Fast Over Fancy
-
-Animations exist only to improve understanding.
-
-Never distract.
-
----
-
-## 8. Mobile First
-
-Desktop is secondary.
-
----
-
-## 9. Accessibility
-
-Readable.
+The application must be usable by someone standing in heavy rain using one hand.
 
 Large buttons.
 
-Colour-blind friendly.
+Minimal typing.
 
-Screen-reader compatible.
+Fast loading.
 
 ---
 
-## 10. Local First
+## Principle 3 — Community Powered
 
-English + తెలుగు.
+Citizens create observations.
 
-Vizag landmarks.
+The system groups observations into Flood Events.
 
-Vizag roads.
+---
 
-Vizag citizens.
+## Principle 4 — Mobile First
+
+The application is designed for phones before tablets or desktops.
+
+---
+
+## Principle 5 — Trust Before Beauty
+
+Information should always be accurate, clear and easy to understand.
+
+Visual effects are secondary.
+
+---
+
+## Principle 6 — Progressive Disclosure
+
+Only show important information first.
+
+Show details when the user asks for them.
+
+---
+
+## Principle 7 — Accessibility
+
+Support
+
+- English
+- Telugu
+- Large touch targets
+- Colour blind friendly design
+- Screen readers
+
+---
+
+## Principle 8 — Learn From Every Rain
+
+Every flood report should improve the city's historical flood knowledge.

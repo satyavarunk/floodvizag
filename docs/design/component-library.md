@@ -1,43 +1,33 @@
-Header
+# FloodVizag Component Library
 
-Search Bar
+## Global Components
 
-Notification Banner
+- Header
+- Search Bar
+- Language Switch
+- Notification Banner
+- City Status Card
+- Filter Chips
+- Map
+- Map Marker
+- Marker Cluster
+- Bottom Sheet
+- Floating Action Button
+- Bottom Navigation
+- Analytics Card
+- Report Card
+- Photo Gallery
+- Timeline
+- Progress Bar
+- Toast Notification
+- Loading Skeleton
 
-Status Card
+---
 
-Map
+## Future Components
 
-Marker
-
-Cluster
-
-Bottom Sheet
-
-Report Card
-
-Analytics Card
-
-Floating Button
-
-Bottom Navigation
-
-Filter Chip
-
-Language Switch
-
-Progress Bar
-
-Timeline
-
-Photo Gallery
-
-Toast
-
-Snackbar
-
-Dialog
-
-Loading Skeleton
-
-
+- Rain Radar
+- Route Planner
+- Shelter Card
+- Emergency Contacts
+- Offline Indicator

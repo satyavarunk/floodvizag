@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "projectName": "FloodVizag",
+    "version": "0.1.0",
+    "city": "Visakhapatnam",
+    "country": "India",
+    "author": "FloodVizag Team",
+    "status": "Design Phase",
+    "lastUpdated": "2026-07-27"
+  },
+
+  "vision": {
+    "mission": "Help citizens make safer travel decisions during floods while creating the city's long-term flood intelligence database.",
+    "philosophy": [
+      "Map First",
+      "Emergency First",
+      "Community Powered",
+      "Mobile First",
+      "Trust Before Beauty",
+      "Progressive Disclosure"
+    ]
+  },
+
+  "platform": {
+    "type": "Mobile First Web Application",
+    "responsive": true,
+    "offlineSupport": true,
+    "languages": [
+      "English",
+      "Telugu"
+    ]
+  },
+
+  "theme": {
+    "primary": "#1565C0",
+    "secondary": "#2D7DE8",
+    "accent": "#03A9F4",
+    "success": "#2E7D32",
+    "warning": "#F9A825",
+    "danger": "#D32F2F",
+    "background": "#F8FAFC",
+    "surface": "#FFFFFF",
+    "textPrimary": "#153B6A",
+    "textSecondary": "#64748B",
+    "font": "Inter",
+    "borderRadius": 16
+  },
+
+  "navigation": {
+    "type": "bottom",
+    "items": [
+      {
+        "id": "home",
+        "label": "Home",
+        "icon": "home"
+      },
+      {
+        "id": "report",
+        "label": "Report",
+        "icon": "add_circle"
+      },
+      {
+        "id": "insights",
+        "label": "Insights",
+        "icon": "analytics"
+      },
+      {
+        "id": "settings",
+        "label": "Settings",
+        "icon": "settings"
+      }
+    ]
+  },
+
+  "screens": {
+
+  },
+
+  "components": {
+
+  },
+
+  "interactions": {
+
+  },
+
+  "animations": {
+
+  },
+
+  "futureModules": {
+
+  }
+
+}

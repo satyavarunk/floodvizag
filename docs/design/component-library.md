@@ -41,17 +41,3 @@ Dialog
 Loading Skeleton
 
 
-
-Every Component should have these -
-
-Purpose
-
-States
-
-Interactions
-
-Accessibility
-
-Variants
-
-Future Improvements

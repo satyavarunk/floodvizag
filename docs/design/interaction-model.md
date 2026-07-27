@@ -1,21 +1,87 @@
-User taps marker
+# FloodVizag Interaction Model
+
+## Tap Marker
+
+Tap Marker
 
 ↓
 
-Marker enlarges
+Highlight Marker
 
 ↓
 
-Map recenters slightly
+Open Bottom Sheet
 
 ↓
 
-Bottom sheet slides up
+Display Event Details
+
+---
+
+## Search
+
+Type Location
 
 ↓
 
-Marker remains highlighted
+Show Suggestions
 
 ↓
 
-Background map remains interactive
+Select Location
+
+↓
+
+Center Map
+
+↓
+
+Highlight Area
+
+---
+
+## Report Flood
+
+Tap Report
+
+↓
+
+Choose Location
+
+↓
+
+Upload Photo
+
+↓
+
+Select Water Depth
+
+↓
+
+Select Road Status
+
+↓
+
+Submit
+
+↓
+
+Show Thank You Screen
+
+---
+
+## View Analytics
+
+Tap Insights
+
+↓
+
+Slide Analytics Dashboard
+
+↓
+
+Swipe Down
+
+↓
+
+Return to Map

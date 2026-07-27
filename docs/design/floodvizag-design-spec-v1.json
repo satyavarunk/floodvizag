@@ -72,24 +72,302 @@
     ]
   },
 
-  "screens": {
+ "screens": {
 
-  },
+            "home": {
+              "title": "Home",
+              "path": "/",
+              "description": "Live flood map of Visakhapatnam",
+          
+              "primaryGoal": "Help citizens understand current flood conditions instantly.",
+          
+              "layout": [
+                "Header",
+                "City Status Card",
+                "Newsletter Banner",
+                "Search Bar",
+                "Filter Row",
+                "Map/List Toggle",
+                "Interactive Map",
+                "Bottom Navigation"
+              ],
+          
+              "actions": [
+                "Search",
+                "Filter",
+                "Locate Me",
+                "View Flood Event",
+                "Switch Language"
+              ]
+            },
+          
+            "report": {
+              "title": "Report Flood",
+              "path": "/report",
+          
+              "steps": [
+                "Choose Location",
+                "Upload Photos",
+                "Select Water Depth",
+                "Select Road Accessibility",
+                "Water Trend",
+                "Additional Notes",
+                "Review",
+                "Submit"
+              ]
+            },
+          
+            "eventDetails": {
+              "title": "Flood Event",
+          
+              "display": "Bottom Sheet",
+          
+              "sections": [
+                "Location",
+                "Severity",
+                "Photos",
+                "Timeline",
+                "Citizen Updates",
+                "Road Status",
+                "Share",
+                "Update Event"
+              ]
+            },
+          
+            "insights": {
+              "title": "Insights",
+          
+              "widgets": [
+                "Active Flood Events",
+                "Reports Today",
+                "Affected Areas",
+                "Severity Breakdown",
+                "Most Flooded Roads",
+                "Ward Rankings",
+                "Historical Trends",
+                "Rainfall Summary"
+              ]
+            },
+          
+            "settings": {
+              "title": "Settings",
+          
+              "items": [
+                "Language",
+                "Notifications",
+                "Offline Maps",
+                "Privacy",
+                "About",
+                "Feedback"
+              ]
+            }
+
+},
 
   "components": {
 
-  },
+                  "header": {
+                    "type": "navigation",
+                    "fixed": true,
+                    "height": 64,
+                    "elements": [
+                      "Logo",
+                      "Version",
+                      "Language Selector",
+                      "Notification Icon"
+                    ]
+                  },
+                
+                  "cityStatusCard": {
+                    "type": "information",
+                    "style": "card",
+                    "priority": "high",
+                    "fields": [
+                      "Current Status",
+                      "Active Events",
+                      "Last Updated",
+                      "Trend"
+                    ]
+                  },
+                
+                  "newsletterBanner": {
+                    "type": "banner",
+                    "dismissible": true,
+                    "action": "Subscribe"
+                  },
+                
+                  "searchBar": {
+                    "placeholder": "Search locality, road or landmark...",
+                    "autocomplete": true,
+                    "clearButton": true,
+                    "searchHistory": true
+                  },
+                
+                  "filters": {
+                    "severity": [
+                      "All",
+                      "Low",
+                      "Medium",
+                      "High",
+                      "Critical"
+                    ],
+                    "status": [
+                      "All",
+                      "Active",
+                      "Resolved",
+                      "Verified"
+                    ]
+                  },
+                
+                  "map": {
+                    "provider": "MapLibre",
+                    "defaultZoom": 12,
+                    "currentLocation": true,
+                    "heatmap": true,
+                    "clusters": true,
+                    "markers": true
+                  },
+                
+                  "marker": {
+                    "colors": {
+                      "low": "#2E7D32",
+                      "medium": "#F9A825",
+                      "high": "#F57C00",
+                      "critical": "#D32F2F"
+                    },
+                    "tapAction": "Open Bottom Sheet"
+                  },
+                
+                  "bottomSheet": {
+                    "height": "75%",
+                    "dismiss": [
+                      "Swipe Down",
+                      "Tap Outside"
+                    ],
+                    "sections": [
+                      "Event",
+                      "Timeline",
+                      "Photos",
+                      "Road Status",
+                      "Actions"
+                    ]
+                  },
+                
+                  "analyticsCard": {
+                    "style": "rounded",
+                    "supportsCharts": true,
+                    "supportsTrends": true
+                  },
+                
+                  "bottomNavigation": {
+                    "fixed": true,
+                    "items": [
+                      "Home",
+                      "Report",
+                      "Insights",
+                      "Settings"
+                    ]
+                  }
+
+},
 
   "interactions": {
 
-  },
+                    "search": {
+                      "trigger": "User types in Search Bar",
+                      "flow": [
+                        "Show Suggestions",
+                        "Select Location",
+                        "Center Map",
+                        "Highlight Area"
+                      ]
+                    },
+                  
+                    "markerTap": {
+                      "trigger": "Tap Marker",
+                      "flow": [
+                        "Highlight Marker",
+                        "Open Bottom Sheet",
+                        "Display Event Details"
+                      ]
+                    },
+                  
+                    "reportFlood": {
+                      "trigger": "Tap Report",
+                      "flow": [
+                        "Choose Location",
+                        "Upload Photos",
+                        "Select Water Depth",
+                        "Select Road Status",
+                        "Submit",
+                        "Thank You Screen"
+                      ]
+                    },
+                  
+                    "switchLanguage": {
+                      "trigger": "Tap Language",
+                      "flow": [
+                        "Translate UI",
+                        "Save Preference"
+                      ]
+                    },
+                  
+                    "viewInsights": {
+                      "trigger": "Tap Insights",
+                      "flow": [
+                        "Slide Analytics Panel",
+                        "Display Charts"
+                      ]
+                    }
 
-  "animations": {
+},
 
-  },
+ "animations": {
+
+                "duration": "250ms",
+              
+                "curve": "ease-out",
+              
+                "supported": [
+              
+                  "Bottom Sheet Slide",
+              
+                  "Map Zoom",
+              
+                  "Marker Bounce",
+              
+                  "Card Fade",
+              
+                  "Button Ripple",
+              
+                  "Skeleton Loading",
+              
+                  "Pull To Refresh"
+              
+                ]
+
+},
 
   "futureModules": {
 
-  }
+                    "rainRadar": true,
+                  
+                    "routePlanner": true,
+                  
+                    "offlineMaps": true,
+                  
+                    "pushNotifications": true,
+                  
+                    "citizenLeaderboard": false,
+                  
+                    "aiFloodPrediction": true,
+                  
+                    "drainMonitoring": true,
+                  
+                    "historicalReplay": true,
+                  
+                    "openDataAPI": true
+
+}
 
 }

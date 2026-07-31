@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import { FloodReport } from "@/data/floodReports";
 
 interface ReportFormProps {
@@ -12,6 +11,9 @@ interface ReportFormProps {
   setReports: React.Dispatch<React.SetStateAction<FloodReport[]>>;
 
   selectedCoordinates: [number, number] | null;
+  setSelectedCoordinates: React.Dispatch<
+    React.SetStateAction<[number, number] | null>
+  >;
 }
 
 export default function ReportForm({
@@ -20,16 +22,19 @@ export default function ReportForm({
   reports,
   setReports,
   selectedCoordinates,
+  setSelectedCoordinates,
 }: ReportFormProps) {
   const [location, setLocation] = useState("");
-  const [severity, setSeverity] =
-    useState("Low");
-  const [waterLevel, setWaterLevel] =
-    useState("Ankle");
-  const [description, setDescription] =
-    useState("");
+  const [severity, setSeverity] = useState("Low");
+  const [waterLevel, setWaterLevel] = useState("Ankle");
+  const [description, setDescription] = useState("");
 
   if (!isOpen) return null;
+
+  function closeForm() {
+    setSelectedCoordinates(null);
+    onClose();
+  }
 
   function handleSubmit() {
     if (!selectedCoordinates) return;
@@ -46,10 +51,7 @@ export default function ReportForm({
       title: "Community Report",
       location,
       coordinates: selectedCoordinates,
-      severity: severity as
-        | "Low"
-        | "Moderate"
-        | "High",
+      severity: severity as "Low" | "Moderate" | "High",
       color,
       updated: "Just now",
       waterLevel,
@@ -63,12 +65,11 @@ export default function ReportForm({
     setSeverity("Low");
     setWaterLevel("Ankle");
 
-    onClose();
+    closeForm();
   }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-
       <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
 
         <div className="mb-5 flex items-center justify-between">
@@ -77,7 +78,7 @@ export default function ReportForm({
           </h2>
 
           <button
-            onClick={onClose}
+            onClick={closeForm}
             className="text-2xl"
           >
             ✕
@@ -92,9 +93,7 @@ export default function ReportForm({
 
           <input
             value={location}
-            onChange={(e) =>
-              setLocation(e.target.value)
-            }
+            onChange={(e) => setLocation(e.target.value)}
             placeholder="Area / Landmark"
             className="w-full rounded-lg border p-3"
           />
@@ -107,9 +106,7 @@ export default function ReportForm({
 
           <select
             value={severity}
-            onChange={(e) =>
-              setSeverity(e.target.value)
-            }
+            onChange={(e) => setSeverity(e.target.value)}
             className="w-full rounded-lg border p-3"
           >
             <option>Low</option>
@@ -119,9 +116,7 @@ export default function ReportForm({
 
           <select
             value={waterLevel}
-            onChange={(e) =>
-              setWaterLevel(e.target.value)
-            }
+            onChange={(e) => setWaterLevel(e.target.value)}
             className="w-full rounded-lg border p-3"
           >
             <option>Ankle</option>
@@ -133,9 +128,7 @@ export default function ReportForm({
           <textarea
             rows={4}
             value={description}
-            onChange={(e) =>
-              setDescription(e.target.value)
-            }
+            onChange={(e) => setDescription(e.target.value)}
             placeholder="Describe the situation..."
             className="w-full rounded-lg border p-3"
           />
@@ -150,7 +143,6 @@ export default function ReportForm({
         </div>
 
       </div>
-
     </div>
   );
 }

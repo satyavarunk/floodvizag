@@ -12,6 +12,9 @@ interface ReportButtonProps {
   setReportMode: React.Dispatch<React.SetStateAction<boolean>>;
 
   selectedCoordinates: [number, number] | null;
+  setSelectedCoordinates: React.Dispatch<
+  React.SetStateAction<[number, number] | null>
+>;
 
   showReportForm: boolean;
   setShowReportForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,6 +26,7 @@ export default function ReportButton({
   reportMode,
   setReportMode,
   selectedCoordinates,
+  setSelectedCoordinates,
   showReportForm,
   setShowReportForm,
 }: ReportButtonProps) {
@@ -84,14 +88,15 @@ export default function ReportButton({
       )}
 
       <ReportForm
-        isOpen={showReportForm}
-        onClose={() => setShowReportForm(false)}
+  isOpen={showReportForm}
+  onClose={() => setShowReportForm(false)}
 
-        reports={reports}
-        setReports={setReports}
+  reports={reports}
+  setReports={setReports}
 
-        selectedCoordinates={selectedCoordinates}
-      />
+  selectedCoordinates={selectedCoordinates}
+  setSelectedCoordinates={setSelectedCoordinates}
+/>
 
     </>
   );

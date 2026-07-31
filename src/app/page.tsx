@@ -28,7 +28,6 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col bg-slate-50">
-
       <Header />
 
       <SearchBar />
@@ -49,12 +48,12 @@ export default function Home() {
         reportMode={reportMode}
         setReportMode={setReportMode}
         selectedCoordinates={selectedCoordinates}
+        setSelectedCoordinates={setSelectedCoordinates}
         showReportForm={showReportForm}
         setShowReportForm={setShowReportForm}
       />
 
       <BottomNav />
-
     </main>
   );
 }

@@ -8,9 +8,27 @@ import { FloodReport } from "@/data/floodReports";
 
 interface MapViewProps {
   reports: FloodReport[];
+
+  reportMode: boolean;
+  setReportMode: React.Dispatch<React.SetStateAction<boolean>>;
+
+  selectedCoordinates: [number, number] | null;
+  setSelectedCoordinates: React.Dispatch<
+    React.SetStateAction<[number, number] | null>
+  >;
+
+  showReportForm: boolean;
+  setShowReportForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function MapView({ reports }: MapViewProps) {
+export default function MapView({
+  reports,
+  reportMode,
+  setReportMode,
+  selectedCoordinates,
+  setSelectedCoordinates,
+  setShowReportForm,
+}: MapViewProps) {
   const mapContainer = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -30,43 +48,11 @@ export default function MapView({ reports }: MapViewProps) {
 
     reports.forEach((report) => {
       const popup = new maplibregl.Popup({ offset: 20 }).setHTML(`
-        <div style="width:240px;font-family:Arial,sans-serif;">
-
-          <div style="
-            background:${report.color};
-            color:white;
-            text-align:center;
-            padding:10px;
-            font-weight:bold;
-            border-radius:8px 8px 0 0;
-            margin:-10px -10px 12px -10px;
-          ">
-            🚨 ${report.severity}
-          </div>
-
-          <div style="padding:0 6px;">
-
-            <h3 style="margin:0 0 10px;font-size:18px;">
-              ${report.title}
-            </h3>
-
-            <p>📍 <strong>${report.location}</strong></p>
-
-            <p>🕒 ${report.updated}</p>
-
-            ${
-              report.waterLevel
-                ? `<p>💧 ${report.waterLevel}</p>`
-                : ""
-            }
-
-            ${
-              report.description
-                ? `<p>${report.description}</p>`
-                : ""
-            }
-
-          </div>
+        <div style="padding:10px;font-family:Arial;">
+          <strong>${report.title}</strong><br/>
+          📍 ${report.location}<br/>
+          🚨 ${report.severity}<br/>
+          🕒 ${report.updated}
         </div>
       `);
 
@@ -78,13 +64,45 @@ export default function MapView({ reports }: MapViewProps) {
         .addTo(map);
     });
 
-    return () => map.remove();
-  }, [reports]);
+    if (selectedCoordinates) {
+      new maplibregl.Marker({
+        color: "#2563eb",
+      })
+        .setLngLat(selectedCoordinates)
+        .addTo(map);
+    }
+
+    map.on("click", (e) => {
+      if (!reportMode) return;
+
+      setSelectedCoordinates([
+        e.lngLat.lng,
+        e.lngLat.lat,
+      ]);
+
+      setReportMode(false);
+      setShowReportForm(true);
+    });
+
+    return () => {
+      map.remove();
+    };
+  }, [
+    reports,
+    reportMode,
+    selectedCoordinates,
+    setReportMode,
+    setSelectedCoordinates,
+    setShowReportForm,
+  ]);
 
   return (
     <section className="flex-1 px-4 pb-4">
       <div className="mx-auto h-[60vh] max-w-7xl overflow-hidden rounded-2xl border border-slate-300 shadow">
-        <div ref={mapContainer} className="h-full w-full" />
+        <div
+          ref={mapContainer}
+          className="h-full w-full"
+        />
       </div>
     </section>
   );

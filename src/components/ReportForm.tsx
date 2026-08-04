@@ -11,6 +11,7 @@ interface ReportFormProps {
   setReports: React.Dispatch<React.SetStateAction<FloodReport[]>>;
 
   selectedCoordinates: [number, number] | null;
+
   setSelectedCoordinates: React.Dispatch<
     React.SetStateAction<[number, number] | null>
   >;
@@ -29,11 +30,40 @@ export default function ReportForm({
   const [waterLevel, setWaterLevel] = useState("Ankle");
   const [description, setDescription] = useState("");
 
+  const [photo, setPhoto] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
   if (!isOpen) return null;
 
   function closeForm() {
     setSelectedCoordinates(null);
+
+    setLocation("");
+    setDescription("");
+    setSeverity("Low");
+    setWaterLevel("Ankle");
+
+    setPhoto(null);
+    setPreview(null);
+
     onClose();
+  }
+
+  function handlePhotoChange(
+    e: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    setPhoto(file);
+
+    setPreview(URL.createObjectURL(file));
+  }
+
+  function removePhoto() {
+    setPhoto(null);
+    setPreview(null);
   }
 
   function handleSubmit() {
@@ -51,7 +81,10 @@ export default function ReportForm({
       title: "Community Report",
       location,
       coordinates: selectedCoordinates,
-      severity: severity as "Low" | "Moderate" | "High",
+      severity: severity as
+        | "Low"
+        | "Moderate"
+        | "High",
       color,
       updated: "Just now",
       waterLevel,
@@ -60,19 +93,16 @@ export default function ReportForm({
 
     setReports([...reports, newReport]);
 
-    setLocation("");
-    setDescription("");
-    setSeverity("Low");
-    setWaterLevel("Ankle");
-
     closeForm();
   }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+
+      <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-xl bg-white p-6 shadow-xl">
 
         <div className="mb-5 flex items-center justify-between">
+
           <h2 className="text-2xl font-bold">
             🌊 Report Flood
           </h2>
@@ -83,6 +113,7 @@ export default function ReportForm({
           >
             ✕
           </button>
+
         </div>
 
         <div className="mb-4 rounded-lg bg-green-100 p-3 text-green-700">
@@ -101,8 +132,28 @@ export default function ReportForm({
           <input
             type="file"
             accept="image/*"
+            onChange={handlePhotoChange}
             className="w-full rounded-lg border p-3"
           />
+
+          {preview && (
+            <div className="space-y-2">
+
+              <img
+                src={preview}
+                alt="Preview"
+                className="max-h-64 w-full rounded-lg border object-cover"
+              />
+
+              <button
+                onClick={removePhoto}
+                className="w-full rounded-lg bg-red-500 py-2 text-white"
+              >
+                Remove Photo
+              </button>
+
+            </div>
+          )}
 
           <select
             value={severity}
@@ -143,6 +194,7 @@ export default function ReportForm({
         </div>
 
       </div>
+
     </div>
   );
 }

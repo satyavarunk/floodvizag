@@ -7,8 +7,7 @@ interface ReportFormProps {
   isOpen: boolean;
   onClose: () => void;
 
-  reports: FloodReport[];
-  setReports: React.Dispatch<React.SetStateAction<FloodReport[]>>;
+  addReport: (report: FloodReport) => void;
 
   selectedCoordinates: [number, number] | null;
 
@@ -20,8 +19,7 @@ interface ReportFormProps {
 export default function ReportForm({
   isOpen,
   onClose,
-  reports,
-  setReports,
+  addReport,
   selectedCoordinates,
   setSelectedCoordinates,
 }: ReportFormProps) {
@@ -57,7 +55,6 @@ export default function ReportForm({
     if (!file) return;
 
     setPhoto(file);
-
     setPreview(URL.createObjectURL(file));
   }
 
@@ -81,28 +78,23 @@ export default function ReportForm({
       title: "Community Report",
       location,
       coordinates: selectedCoordinates,
-      severity: severity as
-        | "Low"
-        | "Moderate"
-        | "High",
+      severity: severity as "Low" | "Moderate" | "High",
       color,
       updated: "Just now",
       waterLevel,
       description,
     };
 
-    setReports([...reports, newReport]);
+    addReport(newReport);
 
     closeForm();
   }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-
       <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-xl bg-white p-6 shadow-xl">
 
         <div className="mb-5 flex items-center justify-between">
-
           <h2 className="text-2xl font-bold">
             🌊 Report Flood
           </h2>
@@ -113,7 +105,6 @@ export default function ReportForm({
           >
             ✕
           </button>
-
         </div>
 
         <div className="mb-4 rounded-lg bg-green-100 p-3 text-green-700">
@@ -194,7 +185,6 @@ export default function ReportForm({
         </div>
 
       </div>
-
     </div>
   );
 }

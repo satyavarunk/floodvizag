@@ -6,7 +6,7 @@ import { FloodReport } from "@/data/floodReports";
 
 interface ReportButtonProps {
   reports: FloodReport[];
-  setReports: React.Dispatch<React.SetStateAction<FloodReport[]>>;
+addReport: (report: FloodReport) => void;
 
   reportMode: boolean;
   setReportMode: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,7 +22,7 @@ interface ReportButtonProps {
 
 export default function ReportButton({
   reports,
-  setReports,
+  addReport,
   reportMode,
   setReportMode,
   selectedCoordinates,
@@ -92,7 +92,7 @@ export default function ReportButton({
   onClose={() => setShowReportForm(false)}
 
   reports={reports}
-  setReports={setReports}
+addReport={addReport}
 
   selectedCoordinates={selectedCoordinates}
   setSelectedCoordinates={setSelectedCoordinates}

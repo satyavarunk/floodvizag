@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
 import StatisticsCard from "@/components/StatisticsCard";
@@ -10,17 +8,14 @@ import MapView from "@/components/MapView";
 import BottomNav from "@/components/BottomNav";
 import ReportButton from "@/components/ReportButton";
 
-import {
-  floodReports,
-  FloodReport,
-} from "@/data/floodReports";
+import useIssues from "@/hooks/useIssues";
+
+import { useState } from "react";
 
 export default function Home() {
-  const [reports, setReports] =
-    useState<FloodReport[]>(floodReports);
+  const { reports, addReport } = useIssues();
 
-  const [reportMode, setReportMode] =
-    useState(false);
+  const [reportMode, setReportMode] = useState(false);
 
   const [selectedCoordinates, setSelectedCoordinates] =
     useState<[number, number] | null>(null);
@@ -31,37 +26,27 @@ export default function Home() {
   const [selectedFilter, setSelectedFilter] =
     useState("All");
 
-  // ------------------------
-  // Statistics
-  // ------------------------
-
   const lowCount = reports.filter(
-    (report) => report.severity === "Low"
+    (r) => r.severity === "Low"
   ).length;
 
   const moderateCount = reports.filter(
-    (report) => report.severity === "Moderate"
+    (r) => r.severity === "Moderate"
   ).length;
 
   const highCount = reports.filter(
-    (report) => report.severity === "High"
+    (r) => r.severity === "High"
   ).length;
-
-  // ------------------------
-  // Filters
-  // ------------------------
 
   const filteredReports =
     selectedFilter === "All"
       ? reports
       : reports.filter(
-          (report) =>
-            report.severity === selectedFilter
+          (r) => r.severity === selectedFilter
         );
 
   return (
     <main className="flex min-h-screen flex-col bg-slate-50">
-
       <Header />
 
       <SearchBar />
@@ -90,7 +75,7 @@ export default function Home() {
 
       <ReportButton
         reports={reports}
-        setReports={setReports}
+        addReport={addReport}
         reportMode={reportMode}
         setReportMode={setReportMode}
         selectedCoordinates={selectedCoordinates}
@@ -100,7 +85,6 @@ export default function Home() {
       />
 
       <BottomNav />
-
     </main>
   );
 }
